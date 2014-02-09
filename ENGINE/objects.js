@@ -14,19 +14,27 @@ function GameObject(onLoad, loop, appearance){
     this.position = "center"; //or "corner". It tells where on object position point is
 	
 	this.setX = function(value){
-		this.x = value;
+		this.x = realx(value);
 	}
 
 	this.setY = function(value){
-		this.y = value;
+		this.y = realy(value);
+	}
+
+	this.setWidth = function(value){
+	    this.width = realx(value);
+	}
+
+	this.setHeight = function(value) {
+	    this.height = realy(value);
 	}
 
 	this.changeX = function(value, deltaTime){
-		this.x += value*deltaTime;
+		this.x += realx(value)*deltaTime;
 	}
 
 	this.changeY = function(value, deltaTime){
-		this.y += value*deltaTime;
+		this.y += realy(value)*deltaTime;
 	}
 
 	this.update = function(deltaTime){
@@ -39,15 +47,12 @@ function GameObject(onLoad, loop, appearance){
 
 	this.draw = function(context, deltaTime){
 		context.save();
-        	context.translate(realx(this.x), realy(this.y));
+        	context.translate(this.x, this.y);
 
 			context.rotate((Math.PI / 180) * this.rotation);
 
-			if (this.look[this.activeAnimation].type === "Image") {
-        		this.look[this.activeAnimation].draw(context, deltaTime, this.width, this.height, this);
-        	} else {
-        		this.look[this.activeAnimation].draw(context, deltaTime, this);
-        	}
+			this.look[this.activeAnimation].draw(context, deltaTime, this);
+
         context.restore();
 	}
 
