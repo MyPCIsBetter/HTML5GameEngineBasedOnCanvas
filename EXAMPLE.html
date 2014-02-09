@@ -1,0 +1,42 @@
+﻿<html>
+    <head>
+        <style type="text/css">
+            body {
+                background-color: black;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            canvas {
+                border: 1px white solid;
+                background-color: black;
+                margin: auto;
+            }
+        </style>
+
+        <title>Simple pong game</title>
+
+        <script src="ENGINE/libs/jquery.js"></script>
+        <!-- 
+        **********************************************************
+        BEGGINING OF LOADING GAME ENGINE SCRIPTS
+        -->
+        <script src="ENGINE/canvasManager.js"></script>
+        <script src="ENGINE/mainFunctions.js"></script>
+
+        <script src="ENGINE/animations.js"></script>
+        <script src="ENGINE/objects.js"></script>
+        <script src="ENGINE/collisions.js"></script>
+        <!-- 
+        END
+        **********************************************************
+        -->
+
+        <script src="EXAMPLE.js"></script>
+
+    </head>
+    <body>
+        <canvas id="canvToRedraw" width="640" height="480"></canvas>
+    </body>
+</html>
