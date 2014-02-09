@@ -72,8 +72,11 @@ Color - color of rectangle
 
 ###AnimateImage(image, rows, columns, speed)
 image - paste here: [new LoadImage([**path_to_your_image**])]
+
 rows - number of rows in your image
+
 columns - number of columns
+
 speed - speed of animation
 
 EXAMPLE:
