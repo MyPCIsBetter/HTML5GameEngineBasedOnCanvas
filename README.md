@@ -122,3 +122,5 @@ box = new GameObject(
     []
 );
 ```
+
+Author of framework: Piotrek Kozerski
