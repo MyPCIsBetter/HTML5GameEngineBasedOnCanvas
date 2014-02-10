@@ -27,7 +27,7 @@ function AnimateImage(image, rows, columns, speed){
 		if(this.animState === "play"){
 			this.framesJump = 0; //add some frames base on time
 			if(this.animSpeed !== 0){
-				this.framesJump = Math.round((Date.now() - this.lastChange)/this.animSpeed);
+				this.framesJump = Math.round((Date.now() - this.lastChange)/this.animSpeed*deltaTime);
 			}
 
 			for(var dd=0; dd<this.framesJump; dd++){
