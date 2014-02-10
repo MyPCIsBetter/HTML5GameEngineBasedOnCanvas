@@ -17,16 +17,18 @@ $(document).ready(function () {
             obj.look[0].play(); //start animation
         },
         function (obj, deltaTime) { //loop
+            obj.collideWith = [box];
+
             if (key("up")) { //up key pressed
-                obj.changeY(-obj.dev.addSpeed, deltaTime);
+                obj.checkThenMoveY(-obj.dev.addSpeed, deltaTime);
             } else if (key("down")) { //down
-                obj.changeY(obj.dev.addSpeed, deltaTime);
+                obj.checkThenMoveY(obj.dev.addSpeed, deltaTime);
             }
 
             if (key("left")) { //left
-                obj.changeX(-obj.dev.addSpeed, deltaTime);
+                obj.checkThenMoveX(-obj.dev.addSpeed, deltaTime);
             } else if (key("right")) { //right
-                obj.changeX(obj.dev.addSpeed, deltaTime);
+                obj.checkThenMoveX(obj.dev.addSpeed, deltaTime);
             }
 
             if (!collision(obj, box)) {

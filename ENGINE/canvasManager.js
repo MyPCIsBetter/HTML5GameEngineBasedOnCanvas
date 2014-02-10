@@ -26,72 +26,68 @@ function key(name) {
 }
 
 $(document).ready(function(){
-var canvasVisible = document.getElementById("canvToRedraw");
-var contextVisible = canvasVisible.getContext("2d");
-if(enableCollisionCanvas){
-    var canvasCol = document.getElementById("collisions");
-    var contextCol = canvasCol.getContext("2d");
-}
+    var canvasVisible = document.getElementById("canvToRedraw");
+    var contextVisible = canvasVisible.getContext("2d");
 
-MAIN_CANVAS = canvasVisible;
+    MAIN_CANVAS = canvasVisible;
 
-/*
-***************************
-STEROWANIE
-***************************
-*/
-addEventListener("keydown", function(e) {
-    keysDown[e.keyCode] = true;
-}, false);
+    /*
+    ***************************
+    CONTROLS
+    ***************************
+    */
+    addEventListener("keydown", function(e) {
+        keysDown[e.keyCode] = true;
+    }, false);
 
-addEventListener("keyup", function(e) {
-    delete keysDown[e.keyCode];
-}, false);
+    addEventListener("keyup", function(e) {
+        delete keysDown[e.keyCode];
+    }, false);
 
-MAIN_CANVAS.addEventListener('mousemove', function(evt) {
-    var rect = MAIN_CANVAS.getBoundingClientRect();
-    mouse.x = evt.clientX - rect.left,
-    mouse.y = evt.clientY - rect.top
-}, false);
+    MAIN_CANVAS.addEventListener('mousemove', function(evt) {
+        var rect = MAIN_CANVAS.getBoundingClientRect();
+        mouse.x = evt.clientX - rect.left,
+        mouse.y = evt.clientY - rect.top
+    }, false);
 
-MAIN_CANVAS.addEventListener('mousedown', function(evt) {
-    mouse.event = "down";
-});
+    MAIN_CANVAS.addEventListener('mousedown', function(evt) {
+        mouse.event = "down";
+    });
 
-MAIN_CANVAS.addEventListener('mouseup', function(evt) {
-    mouse.event = "up";
-});
+    MAIN_CANVAS.addEventListener('mouseup', function(evt) {
+        mouse.event = "up";
+    });
 
-/*
+    /*
 
-*/
+    */
 
-var animFrame = window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        null;
+    var animFrame = window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            null;
 
-if (animFrame !== null) {
-    var recursiveAnim = function() {
-        mainloop();
+    if (animFrame !== null) {
+        var recursiveAnim = function() {
+            mainloop();
+            animFrame(recursiveAnim);
+        };
         animFrame(recursiveAnim);
-    };
-    animFrame(recursiveAnim);
-} else {
-    var ONE_FRAME_TIME = 1000.0 / 60.0;
-    setInterval(mainloop, ONE_FRAME_TIME);
-}
+    } else {
+        var ONE_FRAME_TIME = 1000.0 / 60.0;
+        setInterval(mainloop, ONE_FRAME_TIME);
+    }
 
-var lastUpdate = Date.now();
+    var lastUpdate = Date.now();
 
-var mainloop = function() {
-    var now = Date.now();
-    var fps = 1000 / (now - lastUpdate);
-    var dt = (now - lastUpdate)/10;
-    lastUpdate = now;
+    var mainloop = function() {
+        var now = Date.now();
+        var fps = 1000 / (now - lastUpdate);
+        var dt = (now - lastUpdate)/10;
+        lastUpdate = now;
 
-    play(canvasVisible, contextVisible, dt);
-}
+        play(canvasVisible, contextVisible, dt);
+    }
 });

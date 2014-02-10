@@ -10,6 +10,7 @@ function GameObject(onLoad, loop, appearance){
 	this.dev = {}; //space for programmers own variables
     this.loop = loop;
     this.onLoad = onLoad;
+    this.collideWith = [];
 
     this.position = "center"; //or "corner". It tells where on object position point is
 	
@@ -35,6 +36,22 @@ function GameObject(onLoad, loop, appearance){
 
 	this.changeY = function(value, deltaTime){
 		this.y += realy(value)*deltaTime;
+	}
+
+	this.checkThenMoveX = function (value, deltaTime) {
+	    this.oldctmx = this.x;
+	    this.x += realx(value) * deltaTime;
+	    if (itCollideWithThem(this, this.collideWith)) {
+	        this.x = this.oldctmx;
+	    }
+	}
+
+	this.checkThenMoveY = function (value, deltaTime) {
+	    this.oldctmy = this.y;
+	    this.y += realy(value) * deltaTime;
+	    if (itCollideWithThem(this, this.collideWith)) {
+	        this.y = this.oldctmy;
+	    }
 	}
 
 	this.update = function(deltaTime){
