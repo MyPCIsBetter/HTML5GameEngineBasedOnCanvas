@@ -14,34 +14,39 @@ $(document).ready(function () {
             obj.setY(300); //position y
             obj.dev.addSpeed = 10; //speed (dev is special variable that you can use to store your own variables without trouble about overwriting engines vars)
 
-            obj.look[0].play(); //start animation
+            obj.playAnimation("whiteGuy"); //start animation
         },
         function (obj, deltaTime) { //loop
             obj.collideWith = [box];
 
+            var bang = false;
+
             if (key("up")) { //up key pressed
-                obj.checkThenMoveY(-obj.dev.addSpeed, deltaTime);
+                bang = !obj.checkThenMoveY(-obj.dev.addSpeed, deltaTime);
             } else if (key("down")) { //down
-                obj.checkThenMoveY(obj.dev.addSpeed, deltaTime);
+                bang = !obj.checkThenMoveY(obj.dev.addSpeed, deltaTime);
+            } else if (key("left")) { //left
+                bang = !obj.checkThenMoveX(-obj.dev.addSpeed, deltaTime);
+            } else if (key("right")) { //right
+                bang = !obj.checkThenMoveX(obj.dev.addSpeed, deltaTime);
             }
 
-            if (key("left")) { //left
-                obj.checkThenMoveX(-obj.dev.addSpeed, deltaTime);
-            } else if (key("right")) { //right
-                obj.checkThenMoveX(obj.dev.addSpeed, deltaTime);
+            if (bang) {
+                obj.sounds["bang"].play();
             }
 
             if (!collision(obj, box)) {
                 textToShow = "Animation enabled";
                 colorOfText = "green"
-                obj.look[0].play();
+                obj.playAnimation("whiteGuy");
             } else {
                 textToShow = "ANIMATION STOPPED";
                 colorOfText = "red";
-                obj.look[0].stop();
+                obj.stopAnimation("whiteGuy");
             }
         },
-        [new AnimateImage(new LoadImage("res/sprite.png"), 1, 10, 0.16)]
+        {"whiteGuy": new AnimateImage(new LoadImage("res/sprite.png"), 1, 10, 0.16)},
+        { "bang": new Audio("res/bang_2.wav") }
     );
 
     box = new GameObject(
@@ -57,7 +62,8 @@ $(document).ready(function () {
         function (obj, deltaTime) { //loop
 
         },
-        [new SimpleStaticRectangle("green")]
+        [new SimpleStaticRectangle("green")],
+        null
     );
 
     objectsInGame = new Array(box, player);

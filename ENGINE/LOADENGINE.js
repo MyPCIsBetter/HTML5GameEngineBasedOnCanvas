@@ -6,9 +6,6 @@ function loadJSfromFile(src) {
     h.appendChild(s);
 };
 
-var piover180 = 0.0174532925;
-
-//pliki podstawowe
 loadJSfromFile("ENGINE/canvasManager.js");
 loadJSfromFile("ENGINE/mainFunctions.js");
 loadJSfromFile("ENGINE/animations.js");
