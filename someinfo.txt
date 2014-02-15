@@ -1,7 +1,0 @@
-//Ściąga
-
-//sprawdzam czy myszka najezdza :P
-if(isInside(mouse, obj)){
-	//zrob cos
-}
-

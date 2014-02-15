@@ -72,8 +72,11 @@ function GameObject(onLoad, loop, appearance, audio){
 		this.loop(this, deltaTime);
 	}
 
-	this.setAnimation = function(number){
-		this.activeAnimation = number;
+	this.setLook = function(name){
+	    this.activeAnimation = name;
+	    if (this.look[name].play !== undefined) {
+	        this.playAnimation(name);
+	    }
 	}
 
 	this.draw = function(context, deltaTime){
@@ -95,7 +98,7 @@ function GameObject(onLoad, loop, appearance, audio){
 	return this;
 }
 
-try {
-module.exports.GameObject = GameObject;
-} catch(e){
-}
+//try {
+//    module.exports.GameObject = GameObject;
+//} catch(e){
+//}

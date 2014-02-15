@@ -81,6 +81,7 @@ $(document).ready(function(){
     }
 
     var lastUpdate = Date.now();
+    var OBJECTS_LOADED = false;
 
     var mainloop = function() {
         var now = Date.now();
@@ -88,6 +89,17 @@ $(document).ready(function(){
         var dt = (now - lastUpdate)/10;
         lastUpdate = now;
 
-        play(canvasVisible, contextVisible, dt);
+        if (GameObject !== undefined && !OBJECTS_LOADED) {
+            LOAD_GAME();
+            OBJECTS_LOADED = true;
+        }
+
+        if (OBJECTS_LOADED) {
+            try {
+                play(canvasVisible, contextVisible, dt);
+            } catch (e) {
+                console.log("play() doesn't exist. game code isn't loaded? " + e);
+            }
+        }
     }
 });

@@ -5,7 +5,7 @@ var box;
 var textToShow = "Animation enabled";
 var colorOfText = "green";
 
-$(document).ready(function () {
+var LOAD_GAME =  function() {
     player = new GameObject(
         function (obj) { //onload
             obj.setWidth(200); //width of object
@@ -25,7 +25,8 @@ $(document).ready(function () {
                 bang = !obj.checkThenMoveY(-obj.dev.addSpeed, deltaTime);
             } else if (key("down")) { //down
                 bang = !obj.checkThenMoveY(obj.dev.addSpeed, deltaTime);
-            } else if (key("left")) { //left
+            }
+            if (key("left")) { //left
                 bang = !obj.checkThenMoveX(-obj.dev.addSpeed, deltaTime);
             } else if (key("right")) { //right
                 bang = !obj.checkThenMoveX(obj.dev.addSpeed, deltaTime);
@@ -67,7 +68,7 @@ $(document).ready(function () {
     );
 
     objectsInGame = new Array(box, player);
-});
+};
 
 
 function play(canvas, context, deltaTime) {
