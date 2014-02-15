@@ -1,0 +1,33 @@
+﻿<html>
+    <head>
+        <style type="text/css">
+            body {
+                background-color: black;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                margin: auto;
+            }
+
+            canvas {
+                border: 1px white solid;
+                background-color: black;
+            }
+        </style>
+
+        <title>GameEngine Quick Start</title>
+
+        <!-- Loading jQuery -->
+        <script src="../engineFiles/libs/jquery.js"></script>
+
+        <!-- 
+            Loading files using requireJS. This lines runs "loadMe.js" file, go there to see what's happening. 
+            If you want to change file name, change value of "data-main" attribute.
+        -->
+        <script data-main="loadMe" src="../engineFiles/libs/require.js"></script>
+
+    </head>
+    <body>
+        <canvas id="canvToRedraw" width="640" height="480"></canvas>
+    </body>
+</html>
